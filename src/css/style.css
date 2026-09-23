@@ -41,6 +41,6 @@
     @apply text-purple-500;
   }
   .attribution a {
-    @apply text-purple-500;
+    @apply text-purple-700;
   }
 }

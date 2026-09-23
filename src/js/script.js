@@ -36,7 +36,7 @@ const calcAge = () => {
   elements.currMonth = now.getMonth() + 1 - MM.value;
   elements.allStates.forEach(([val, inp]) => {
     const type = inp.closest('div').querySelector('label').textContent.toLowerCase();
-    if (val < 0) {
+    if (val < 0 || val > 120) {
       displayErr(inp, `Must be a vaild ${type}`);
       elements.hasErr = true;
     }

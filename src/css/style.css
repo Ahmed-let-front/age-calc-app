@@ -1,0 +1,46 @@
+@import 'tailwindcss';
+@import "@fontsource/poppins/400.css";
+@import "@fontsource/poppins/700.css";
+@theme {
+  --font-sans: 'Poppins', sans-serif;
+  --color-purple-500: hsl(259, 100%, 65%);
+  --color-red-400: hsl(0, 100%, 67%);
+  --color-white: hsl(0, 0%, 100%);
+  --color-grey-100: hsl(0, 0%, 94%);
+  --color-grey-200: hsl(0, 0%, 86%);
+  --color-grey-500: hsl(0, 1%, 44%);
+  --color-black: hsl(0, 0%, 0%);
+}
+
+@layer base {
+  html {
+    font-size: 62.5%;
+  }
+}
+
+@layer components {
+  .field-label {
+    @apply block mb-2 text-sm font-bold tracking-widest uppercase text-grey-500;
+  }
+  .field-input {
+    @apply w-full rounded-lg border border-grey-200 px-4 py-3 md:px-6 md:py-5 text-5xl font-bold text-black caret-purple-500 outline-none focus:border-purple-500 placeholder:text-4xl placeholder:md:text-5xl;
+  }
+  .field-error {
+    @apply mt-2 text-sm italic text-red-400 min-h-4;
+  }
+  .btn-submit {
+    @apply flex h-16 w-16 md:h-36 md:w-36 items-center justify-center rounded-full bg-black transition-colors hover:bg-purple-500 focus:bg-purple-500 focus:outline-none;
+  }
+  .icon-arrow {
+    @apply w-6 h-6 md:w-11 md:h-11 text-white rotate-90;
+  }
+  .result-line {
+    @apply text-7xl md:text-9xl font-extrabold italic;
+  }
+  .result-number {
+    @apply text-purple-500;
+  }
+  .attribution a {
+    @apply text-purple-500;
+  }
+}

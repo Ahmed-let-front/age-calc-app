@@ -20,7 +20,7 @@ const elements = {
     ];
   },
 };
-const calcAge = e => {
+const calcAge = () => {
   returnInputToInitState();
   const inptsVal = Array.from(elements.allInps);
   const [DD, MM, YY] = inptsVal;

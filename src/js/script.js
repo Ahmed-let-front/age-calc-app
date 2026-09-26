@@ -24,24 +24,38 @@ const calcAge = () => {
   returnInputToInitState();
   const inptsVal = Array.from(elements.allInps);
   const [DD, MM, YY] = inptsVal;
-  inptsVal.forEach(el => {
-    if (+el.value === 0) {
-      displayErr(el, 'This field is requierd');
+  const now = new Date();
+  const regex = /[^0-9]/;
+  const logics = {
+    day: val => val >= 32,
+    month: val => val >= 13,
+    year: val => val < 1900 || val >= now.getFullYear(),
+  };
+  inptsVal.forEach(inp => {
+    const type = inp.closest('div').querySelector('label').textContent.toLowerCase();
+    console.log(type);
+    if (+inp.value === 0) {
+      displayErr(inp, 'This input is require');
       elements.hasErr = true;
     }
-  });
-  const now = new Date();
-  elements.currYear = now.getFullYear() - YY.value;
-  elements.currDay = now.getDate() - DD.value;
-  elements.currMonth = now.getMonth() + 1 - MM.value;
-  elements.allStates.forEach(([val, inp]) => {
-    const type = inp.closest('div').querySelector('label').textContent.toLowerCase();
-    if (val < 0 || val > 120) {
-      displayErr(inp, `Must be a vaild ${type}`);
+    if (regex.test(inp.value) || logics[type](+inp.value)) {
+      displayErr(inp, `Must be vaild ${type}`);
       elements.hasErr = true;
     }
   });
   if (elements.hasErr) return;
+  elements.currYear = now.getFullYear() - YY.value;
+  elements.currDay = now.getDate() - DD.value;
+  elements.currMonth = now.getMonth() + 1 - MM.value;
+  if (elements.currDay < 0) {
+    elements.currMonth--;
+    const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+    elements.currDay += prevMonth.getDate();
+  }
+  if (elements.currMonth < 0) {
+    elements.currYear--;
+    elements.currMonth += 12;
+  }
   clearInputs();
   displayAge();
 };
